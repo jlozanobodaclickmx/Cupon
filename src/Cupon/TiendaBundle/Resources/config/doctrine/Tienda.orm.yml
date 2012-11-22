@@ -1,0 +1,39 @@
+Cupon\TiendaBundle\Entity\Tienda:
+   type: entity
+
+   repositoryClass: Cupon\TiendaBundle\Repository\TiendaRepository
+   id:
+       id:
+           type: integer
+           generator: { strategy: AUTO }
+
+   fields:
+       nombre:
+           type: string
+           length: 100
+
+       slug:
+           type: string
+           length: 100
+
+       login:
+           type: string
+           length: 10
+
+       password:
+           type: string
+           length: 255
+
+       salt:
+           type: string
+           length: 255
+
+       descripcion:
+           type: text
+
+       direccion:
+           type: text
+
+       ciudad:
+           type: string
+           length: 255

@@ -1,0 +1,23 @@
+Cupon\CiudadBundle\Entity\Ciudad:
+   type: entity
+   repositoryClass: Cupon\CiudadBundle\Repository\CiudadRepository
+   id:
+       id:
+           type: integer
+           generator: { strategy: AUTO }
+
+   fields:
+       nombre:
+           type: string
+           length: 100
+
+       slug:
+           type: string
+           length: 100
+
+
+
+
+
+
+

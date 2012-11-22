@@ -1,0 +1,58 @@
+Cupon\OfertaBundle\Entity\Oferta:
+   type: entity
+   # la siguiente opción es opcional y define el repositorio
+   # asociado con esta entidad, tal y como se explicará más adelante
+   repositoryClass: Cupon\OfertaBundle\Repository\OfertaRepository
+   id:
+       id:
+           type: integer
+           generator: { strategy: AUTO }
+
+   fields:
+       nombre:
+           type: string
+           length: 255
+
+       slug:
+           type: string
+           length: 255
+
+       descripcion:
+           type: text
+
+       condiciones:
+           type: text
+
+       foto:
+           type: string
+           length: 255
+
+       precio:
+           type: decimal
+
+       descuento:
+           type: decimal
+
+       fecha_publicacion:
+           type: datetime
+
+       fecha_expiracion:
+           type: datetime
+
+       compras:
+           type: integer
+
+       umbral:
+           type: integer
+
+       revisada:
+           type: boolean
+
+       ciudad:
+           type: string
+           length: 255
+
+       tienda:
+           type: string
+           length: 255
+

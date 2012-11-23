@@ -2,6 +2,7 @@
 namespace Cupon\OfertaBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 class DefaultController extends Controller
 {
     public function ayudaAction()
@@ -9,16 +10,29 @@ class DefaultController extends Controller
     return $this->render('OfertaBundle:Default:ayuda.html.twig');
     }
 
-        public function portadaAction()
+        public function portadaAction($ciudad)
         {
-               $em = $this->getDoctrine()->getEntityManager();
-               $oferta = $em->getRepository('OfertaBundle:Oferta')->findOneBy(array(
-                   'ciudad' => 1,
-                   'fecha_publicacion' => new \DateTime('today')
-                   ));
-               return $this->render( 'OfertaBundle:Default:portada.html.twig',
-                   array('oferta' => $oferta)
-                    );
+             /*  if (null == $ciudad) {
+                   $ciudad = $this->container->getParameter('cupon.ciudad_por_defecto');
+                   return new RedirectResponse($this->generateUrl('portada', array('ciudad' => $ciudad))
+                   );
+        }*/
+            $em = $this->getDoctrine()->getEntityManager();
+            $oferta = $em->getRepository('OfertaBundle:Oferta')->findOneBy(array(
+                'ciudad' => $this->container->getParameter('cupon.ciudad_por_defecto'),
+                'fecha_publicacion' => new \DateTime('today')
+                ));
+
+            $log = $this->get('logger');
+            $log->addInfo ('Generada la portada en '.$tiempo.' milisegundos');
+
+            if (!$oferta) {
+                throw $this->createNotFoundException('No se ha encontrado la oferta del día en la ciudad seleccionada');
+            }
+
+            return $this->render( 'OfertaBundle:Default:portada.html.twig',
+                array('oferta' => $oferta)
+                 );
 
 
         }

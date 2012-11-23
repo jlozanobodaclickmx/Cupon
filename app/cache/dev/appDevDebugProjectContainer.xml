@@ -24,7 +24,6 @@
       <parameter key="TiendaBundle">Cupon\TiendaBundle\TiendaBundle</parameter>
       <parameter key="UsuarioBundle">Cupon\UsuarioBundle\UsuarioBundle</parameter>
       <parameter key="DoctrineFixturesBundle">Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle</parameter>
-      <parameter key="AcmeDemoBundle">Acme\DemoBundle\AcmeDemoBundle</parameter>
       <parameter key="WebProfilerBundle">Symfony\Bundle\WebProfilerBundle\WebProfilerBundle</parameter>
       <parameter key="SensioDistributionBundle">Sensio\Bundle\DistributionBundle\SensioDistributionBundle</parameter>
       <parameter key="SensioGeneratorBundle">Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle</parameter>
@@ -43,6 +42,7 @@
     <parameter key="mailer_password">null</parameter>
     <parameter key="locale">en</parameter>
     <parameter key="secret">ThisTokenIsNotSoSecretChangeIt</parameter>
+    <parameter key="cupon.ciudad_por_defecto">1</parameter>
     <parameter key="controller_resolver.class">Symfony\Bundle\FrameworkBundle\Controller\ControllerResolver</parameter>
     <parameter key="controller_name_converter.class">Symfony\Bundle\FrameworkBundle\Controller\ControllerNameParser</parameter>
     <parameter key="response_listener.class">Symfony\Component\HttpKernel\EventListener\ResponseListener</parameter>
@@ -464,8 +464,8 @@
     <parameter key="jms_di_extra.directories" type="collection"/>
     <parameter key="jms_di_extra.cache_dir">/home/jlozano/Proyectos/Cupon/app/cache/dev/jms_diextra</parameter>
     <parameter key="jms_di_extra.doctrine_integration">true</parameter>
-    <parameter key="jms_di_extra.doctrine_integration.entity_manager.file">/home/jlozano/Proyectos/Cupon/app/cache/dev/jms_diextra/doctrine/EntityManager_50ac11db7fd9f.php</parameter>
-    <parameter key="jms_di_extra.doctrine_integration.entity_manager.class">EntityManager50ac11db7fd9f_546a8d27f194334ee012bfe64f629947b07e4919\__CG__\Doctrine\ORM\EntityManager</parameter>
+    <parameter key="jms_di_extra.doctrine_integration.entity_manager.file">/home/jlozano/Proyectos/Cupon/app/cache/dev/jms_diextra/doctrine/EntityManager_50afc4efb9eee.php</parameter>
+    <parameter key="jms_di_extra.doctrine_integration.entity_manager.class">EntityManager50afc4efb9eee_546a8d27f194334ee012bfe64f629947b07e4919\__CG__\Doctrine\ORM\EntityManager</parameter>
     <parameter key="security.secured_services" type="collection"/>
     <parameter key="security.access.method_interceptor.class">JMS\SecurityExtraBundle\Security\Authorization\Interception\MethodSecurityInterceptor</parameter>
     <parameter key="security.access.method_access_control" type="collection"/>
@@ -499,7 +499,7 @@
     <parameter key="web_profiler.debug_toolbar.class">Symfony\Bundle\WebProfilerBundle\EventListener\WebDebugToolbarListener</parameter>
     <parameter key="web_profiler.debug_toolbar.intercept_redirects">false</parameter>
     <parameter key="web_profiler.debug_toolbar.mode">2</parameter>
-    <parameter key="web_profiler.debug_toolbar.position">bottom</parameter>
+    <parameter key="web_profiler.debug_toolbar.position">top</parameter>
     <parameter key="sensio.distribution.webconfigurator.class">Sensio\Bundle\DistributionBundle\Configurator\Configurator</parameter>
     <parameter key="data_collector.templates" type="collection">
       <parameter key="data_collector.config" type="collection">
@@ -647,14 +647,6 @@
         <argument type="collection">
           <argument>sensio_framework_extra.cache.listener</argument>
           <argument>onKernelResponse</argument>
-        </argument>
-        <argument>0</argument>
-      </call>
-      <call method="addListenerService">
-        <argument>kernel.controller</argument>
-        <argument type="collection">
-          <argument>acme.demo.listener</argument>
-          <argument>onKernelController</argument>
         </argument>
         <argument>0</argument>
       </call>
@@ -1952,9 +1944,6 @@
           </service>
         </argument>
       </call>
-      <call method="addExtension">
-        <argument type="service" id="twig.extension.acme.demo"/>
-      </call>
     </service>
     <service id="twig.loader" class="Symfony\Bundle\TwigBundle\Loader\FilesystemLoader">
       <argument type="service" id="templating.locator"/>
@@ -2145,8 +2134,8 @@
     <service id="doctrine.orm.default_manager_configurator" class="Doctrine\Bundle\DoctrineBundle\ManagerConfigurator">
       <argument type="collection"/>
     </service>
-    <service id="doctrine.orm.default_entity_manager" class="EntityManager50ac11db7fd9f_546a8d27f194334ee012bfe64f629947b07e4919\__CG__\Doctrine\ORM\EntityManager">
-      <file>/home/jlozano/Proyectos/Cupon/app/cache/dev/jms_diextra/doctrine/EntityManager_50ac11db7fd9f.php</file>
+    <service id="doctrine.orm.default_entity_manager" class="EntityManager50afc4efb9eee_546a8d27f194334ee012bfe64f629947b07e4919\__CG__\Doctrine\ORM\EntityManager">
+      <file>/home/jlozano/Proyectos/Cupon/app/cache/dev/jms_diextra/doctrine/EntityManager_50afc4efb9eee.php</file>
       <argument type="service">
         <service class="Doctrine\ORM\EntityManager" factory-method="create" public="false">
           <argument type="service" id="doctrine.dbal.default_connection"/>
@@ -2192,16 +2181,11 @@
                   <service class="Doctrine\ORM\Mapping\Driver\DriverChain" public="false">
                     <call method="addDriver">
                       <argument type="service">
-                        <service class="Doctrine\ORM\Mapping\Driver\SimplifiedYamlDriver" public="false">
+                        <service class="Doctrine\ORM\Mapping\Driver\AnnotationDriver" public="false">
+                          <argument type="service" id="annotation_reader"/>
                           <argument type="collection">
-                            <argument key="/home/jlozano/Proyectos/Cupon/src/Cupon/OfertaBundle/Resources/config/doctrine">Cupon\OfertaBundle\Entity</argument>
-                            <argument key="/home/jlozano/Proyectos/Cupon/src/Cupon/CiudadBundle/Resources/config/doctrine">Cupon\CiudadBundle\Entity</argument>
-                            <argument key="/home/jlozano/Proyectos/Cupon/src/Cupon/TiendaBundle/Resources/config/doctrine">Cupon\TiendaBundle\Entity</argument>
-                            <argument key="/home/jlozano/Proyectos/Cupon/src/Cupon/UsuarioBundle/Resources/config/doctrine">Cupon\UsuarioBundle\Entity</argument>
+                            <argument>/home/jlozano/Proyectos/Cupon/src/Cupon/OfertaBundle/Entity</argument>
                           </argument>
-                          <call method="setGlobalBasename">
-                            <argument>mapping</argument>
-                          </call>
                         </service>
                       </argument>
                       <argument>Cupon\OfertaBundle\Entity</argument>
@@ -2210,7 +2194,6 @@
                       <argument type="service">
                         <service class="Doctrine\ORM\Mapping\Driver\SimplifiedYamlDriver" public="false">
                           <argument type="collection">
-                            <argument key="/home/jlozano/Proyectos/Cupon/src/Cupon/OfertaBundle/Resources/config/doctrine">Cupon\OfertaBundle\Entity</argument>
                             <argument key="/home/jlozano/Proyectos/Cupon/src/Cupon/CiudadBundle/Resources/config/doctrine">Cupon\CiudadBundle\Entity</argument>
                             <argument key="/home/jlozano/Proyectos/Cupon/src/Cupon/TiendaBundle/Resources/config/doctrine">Cupon\TiendaBundle\Entity</argument>
                             <argument key="/home/jlozano/Proyectos/Cupon/src/Cupon/UsuarioBundle/Resources/config/doctrine">Cupon\UsuarioBundle\Entity</argument>
@@ -2226,7 +2209,6 @@
                       <argument type="service">
                         <service class="Doctrine\ORM\Mapping\Driver\SimplifiedYamlDriver" public="false">
                           <argument type="collection">
-                            <argument key="/home/jlozano/Proyectos/Cupon/src/Cupon/OfertaBundle/Resources/config/doctrine">Cupon\OfertaBundle\Entity</argument>
                             <argument key="/home/jlozano/Proyectos/Cupon/src/Cupon/CiudadBundle/Resources/config/doctrine">Cupon\CiudadBundle\Entity</argument>
                             <argument key="/home/jlozano/Proyectos/Cupon/src/Cupon/TiendaBundle/Resources/config/doctrine">Cupon\TiendaBundle\Entity</argument>
                             <argument key="/home/jlozano/Proyectos/Cupon/src/Cupon/UsuarioBundle/Resources/config/doctrine">Cupon\UsuarioBundle\Entity</argument>
@@ -2242,7 +2224,6 @@
                       <argument type="service">
                         <service class="Doctrine\ORM\Mapping\Driver\SimplifiedYamlDriver" public="false">
                           <argument type="collection">
-                            <argument key="/home/jlozano/Proyectos/Cupon/src/Cupon/OfertaBundle/Resources/config/doctrine">Cupon\OfertaBundle\Entity</argument>
                             <argument key="/home/jlozano/Proyectos/Cupon/src/Cupon/CiudadBundle/Resources/config/doctrine">Cupon\CiudadBundle\Entity</argument>
                             <argument key="/home/jlozano/Proyectos/Cupon/src/Cupon/TiendaBundle/Resources/config/doctrine">Cupon\TiendaBundle\Entity</argument>
                             <argument key="/home/jlozano/Proyectos/Cupon/src/Cupon/UsuarioBundle/Resources/config/doctrine">Cupon\UsuarioBundle\Entity</argument>
@@ -2423,20 +2404,12 @@
         </argument>
       </call>
     </service>
-    <service id="twig.extension.acme.demo" class="Acme\DemoBundle\Twig\Extension\DemoExtension" public="false">
-      <tag name="twig.extension"/>
-      <argument type="service" id="twig.loader"/>
-    </service>
-    <service id="acme.demo.listener" class="Acme\DemoBundle\EventListener\ControllerListener">
-      <tag name="kernel.event_listener" event="kernel.controller" method="onKernelController"/>
-      <argument type="service" id="twig.extension.acme.demo"/>
-    </service>
     <service id="web_profiler.debug_toolbar" class="Symfony\Bundle\WebProfilerBundle\EventListener\WebDebugToolbarListener">
       <tag name="kernel.event_subscriber"/>
       <argument type="service" id="templating"/>
       <argument>false</argument>
       <argument>2</argument>
-      <argument>bottom</argument>
+      <argument>top</argument>
     </service>
     <service id="sensio.distribution.webconfigurator" class="Sensio\Bundle\DistributionBundle\Configurator\Configurator">
       <argument>/home/jlozano/Proyectos/Cupon/app</argument>

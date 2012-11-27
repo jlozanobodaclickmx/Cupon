@@ -10,7 +10,7 @@
             <h1><a href="{{ path('portada') }}">CUPON</a></h1>
             <nav>
                 <ul>
-                    <li><a href="{{ path('portada') }}">Oferta del día</a></li>
+                    <li><a href="{{ path('portada') }}">Oferta del dÃ­a</a></li>
                     <li><a href="#">Ofertas recientes</a></li>
                     <li><a href="#">Mis ofertas</a></li>
                 </ul>
@@ -24,7 +24,7 @@
             </section>
 
             <section class="galeria">
-                <img alt="Fotografía de la oferta" src="{{ asset('uploads/images'~ofeta.foto) }}">
+                <img alt="Fotografï¿½a de la oferta" src="{{ asset('uploads/images'~ofeta.foto) }}">
                 <p class="precio"> {{ oferta.precio }} &euro;
                     <span>## DESCUENTO ##</span></p>
                 <p><strong>Condiciones:</strong> {{ oferta.condiciones }}</p>
@@ -42,11 +42,11 @@
                 <div class="faltan">
                     {% set faltan = oferta.umbral - oferta.compras %}
                     {% if faltan > 0 %}
-                    {# Si las compras no llegan al umbral mínimo establecido #}
+                    {# Si las compras no llegan al umbral mÃ­nimo establecido #}
                         Faltan <strong> {{ faltan }} compras</strong> <br/>
                         para activar la oferta
                     {% else %}
-                    {# Si las compras superan el umbral mínimo establecido #}
+                    {# Si las compras superan el umbral mÃ­nimo establecido #}
                         <strong>Oferta activada</strong> por superar las
                         <strong> {{ oferta.umbral }}</strong> compras necesarias
                     {% endif %}

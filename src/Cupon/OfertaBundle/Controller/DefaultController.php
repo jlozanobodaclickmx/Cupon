@@ -18,10 +18,11 @@ class DefaultController extends Controller
                    );
         }*/
             $em = $this->getDoctrine()->getEntityManager();
-            $oferta = $em->getRepository('OfertaBundle:Oferta')->findOneBy(array(
+           /* $oferta = $em->getRepository('OfertaBundle:Oferta')->findOneBy(array(
                 'ciudad' => $this->container->getParameter('cupon.ciudad_por_defecto'),
                 'fecha_publicacion' => new \DateTime('today')
-                ));
+                ));*/
+            $oferta = $em->getRepository('OfertaBundle:Oferta')->findOfertaDelDia($ciudad);
 
             $log = $this->get('logger');
             $log->addInfo ('Generada la portada en '.$tiempo.' milisegundos');

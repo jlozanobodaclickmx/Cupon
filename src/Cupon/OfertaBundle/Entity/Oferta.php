@@ -7,6 +7,7 @@ use Cupon\OfertaBundle\Util\Util;
 
 /**
  * Cupon\OfertaBundle\Entity\Oferta
+ * @ORM\Entity(repositoryClass="Cupon\OfertaBundle\Entity\OfertaRepository")
  *
  * @ORM\Table()
  * @ORM\Entity
@@ -124,7 +125,7 @@ class Oferta
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -141,14 +142,14 @@ class Oferta
     {
         $this->nombre = $nombre;
         $this->slug = Util::getSlug($nombre);
-    
+
         return $this;
     }
 
     /**
      * Get nombre
      *
-     * @return string 
+     * @return string
      */
     public function getNombre()
     {
@@ -164,14 +165,14 @@ class Oferta
     public function setSlug($slug)
     {
         $this->slug = $slug;
-    
+
         return $this;
     }
 
     /**
      * Get slug
      *
-     * @return string 
+     * @return string
      */
     public function getSlug()
     {
@@ -187,14 +188,14 @@ class Oferta
     public function setDescripcion($descripcion)
     {
         $this->descripcion = $descripcion;
-    
+
         return $this;
     }
 
     /**
      * Get descripcion
      *
-     * @return string 
+     * @return string
      */
     public function getDescripcion()
     {
@@ -210,14 +211,14 @@ class Oferta
     public function setCondiciones($condiciones)
     {
         $this->condiciones = $condiciones;
-    
+
         return $this;
     }
 
     /**
      * Get condiciones
      *
-     * @return string 
+     * @return string
      */
     public function getCondiciones()
     {
@@ -233,14 +234,14 @@ class Oferta
     public function setFoto($foto)
     {
         $this->foto = $foto;
-    
+
         return $this;
     }
 
     /**
      * Get foto
      *
-     * @return string 
+     * @return string
      */
     public function getFoto()
     {
@@ -256,14 +257,14 @@ class Oferta
     public function setPrecio($precio)
     {
         $this->precio = $precio;
-    
+
         return $this;
     }
 
     /**
      * Get precio
      *
-     * @return float 
+     * @return float
      */
     public function getPrecio()
     {
@@ -279,14 +280,14 @@ class Oferta
     public function setDescuento($descuento)
     {
         $this->descuento = $descuento;
-    
+
         return $this;
     }
 
     /**
      * Get descuento
      *
-     * @return float 
+     * @return float
      */
     public function getDescuento()
     {
@@ -302,14 +303,14 @@ class Oferta
     public function setFechaPublicacion($fechaPublicacion)
     {
         $this->fecha_publicacion = $fechaPublicacion;
-    
+
         return $this;
     }
 
     /**
      * Get fecha_publicacion
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getFechaPublicacion()
     {
@@ -325,14 +326,14 @@ class Oferta
     public function setFechaExpiracion($fechaExpiracion)
     {
         $this->fecha_expiracion = $fechaExpiracion;
-    
+
         return $this;
     }
 
     /**
      * Get fecha_expiracion
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getFechaExpiracion()
     {
@@ -348,14 +349,14 @@ class Oferta
     public function setCompras($compras)
     {
         $this->compras = $compras;
-    
+
         return $this;
     }
 
     /**
      * Get compras
      *
-     * @return integer 
+     * @return integer
      */
     public function getCompras()
     {
@@ -371,14 +372,14 @@ class Oferta
     public function setUmbral($umbral)
     {
         $this->umbral = $umbral;
-    
+
         return $this;
     }
 
     /**
      * Get umbral
      *
-     * @return integer 
+     * @return integer
      */
     public function getUmbral()
     {
@@ -394,14 +395,14 @@ class Oferta
     public function setRevisada($revisada)
     {
         $this->revisada = $revisada;
-    
+
         return $this;
     }
 
     /**
      * Get revisada
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getRevisada()
     {
@@ -417,14 +418,14 @@ class Oferta
     public function setCiudad(\Cupon\CiudadBundle\Entity\Ciudad $ciudad)
     {
         $this->ciudad = $ciudad;
-    
+
         return $this;
     }
 
     /**
      * Get ciudad
      *
-     * @return string 
+     * @return string
      */
     public function getCiudad()
     {
@@ -440,20 +441,20 @@ class Oferta
     public function setTiendasetTienda(\Cupon\TiendaBundle\Entity\Tienda $tienda)
     {
         $this->tienda = $tienda;
-    
+
         return $this;
     }
 
     /**
      * Get tienda
      *
-     * @return string 
+     * @return string
      */
     public function getTienda()
     {
         return $this->tienda;
     }
-    
+
     public function __toString()
     {
         return $this->getNombre();

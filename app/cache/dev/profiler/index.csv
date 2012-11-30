@@ -129,3 +129,5 @@
 50afcc0283b2b,127.0.0.1,GET,http://cupon.local/app_dev.php/%7B%20ciudad%20%7D,1353698306,
 50b006b7958d4,127.0.0.1,GET,http://cupon.local/app_dev.php/%7B%20ciudad%20%7D,1353713335,
 50b006b8de1b4,127.0.0.1,GET,http://cupon.local/app_dev.php/%7B%20ciudad%20%7D,1353713336,
+50b7ab5e3ef40,127.0.0.1,GET,http://cupon.local/app_dev.php/ciudad/cambiar-a-madrid,1354214238,
+50b7ab5e45fb0,127.0.0.1,GET,http://cupon.local/app_dev.php/ciudad/cambiar-a-madrid,1354214238,

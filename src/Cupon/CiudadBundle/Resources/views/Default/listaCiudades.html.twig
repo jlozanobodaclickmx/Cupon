@@ -1,7 +1,10 @@
 <select id="ciudadseleccionada">
-{% for ciudad in ciudades %}
-    <option value="{{ ciudad.slug }}">{{ ciudad.nombre }}</option>
-{% endfor %}
+    {% for ciudad in ciudades %}
+        <option value="{{ ciudad.slug }}">
+            data-url="{{ url('ciudad_cambiar', { 'ciudad': ciudad.slug }) }}"
+            {{ ciudadActual == ciudad.slug ? 'selected="selected"' : '' }}>
+            {{ ciudad.nombre }}</option>
+    {% endfor %}
 </select>
 
 <script type="text/javascript">

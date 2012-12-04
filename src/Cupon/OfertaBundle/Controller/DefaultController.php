@@ -10,7 +10,7 @@ class DefaultController extends Controller
     return $this->render('OfertaBundle:Default:ayuda.html.twig');
     }
 
-        public function portadaAction($ciudad)
+    public function portadaAction($ciudad)
         {
              /*  if (null == $ciudad) {
                    $ciudad = $this->container->getParameter('cupon.ciudad_por_defecto');
@@ -36,5 +36,15 @@ class DefaultController extends Controller
                  );
 
 
-        }
+    }
+
+    public function ofertaAction($ciudad, $slug)
+    {
+     $em = $this->getDoctrine()->getEntityManager();
+     $oferta = $em->getRepository('OfertaBundle:Oferta')->findOferta($ciudad, $slug);
+
+     return $this->render('OfertaBundle:Default:detalle.html.twig', array('oferta' => $oferta));
+
+    }
+
 }

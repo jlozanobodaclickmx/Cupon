@@ -11,8 +11,8 @@ ciudad:
     prefix:   /
 
 oferta:
-    resource: "@OfertaBundle/Resources/config/routing.yml"
-    prefix:   /
+    pattern: /{ciudad}/ofertas/{slug}
+    defaults: { _controller: OfertaBundle:Default:oferta }
 
 pagina_estatica:
     pattern: /sitio/{pagina}
@@ -30,6 +30,9 @@ _portada:
     pattern: /
     defaults: { _controller: FrameworkBundle:Redirect:redirect,
         route: portada, ciudad: '%cupon.ciudad_por_defecto%' }
+
+
+
 
 
 # Internal routing configuration to handle ESI

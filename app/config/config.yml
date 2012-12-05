@@ -63,3 +63,16 @@ swiftmailer:
 
 parameters:
     cupon.ciudad_por_defecto: 'barcelona'
+
+services:
+    twig.extension.text:
+        class: Twig_Extension_Extensions_Text
+    tags:
+        - { name: twig.extension }
+
+    twig.extension.debug:
+        class: Twig_Extensions_Extension_Debug
+    tags:
+        - { name: twig.extension }
+
+

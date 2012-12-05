@@ -42,8 +42,13 @@ class DefaultController extends Controller
     {
      $em = $this->getDoctrine()->getEntityManager();
      $oferta = $em->getRepository('OfertaBundle:Oferta')->findOferta($ciudad, $slug);
+     $relacionadas = $em->getRepository('OfertaBundle:Oferta')->findRelacionadas($ciudad);
 
-     return $this->render('OfertaBundle:Default:detalle.html.twig', array('oferta' => $oferta));
+
+     return $this->render('OfertaBundle:Default:detalle.html.twig',
+        array('oferta'=> $oferta,
+              'relacionadas' => $relacionadas
+        ));
 
     }
 

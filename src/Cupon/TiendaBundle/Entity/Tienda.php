@@ -4,6 +4,11 @@ use Doctrine\ORM\Mapping as ORM;
 use Cupon\OfertaBundle\Util\Util;
 
 /** @ORM\Entity */
+/**
+* @ORM\Entity(repositoryClass="Cupon\TiendaBundle\Entity\TiendaRepository")
+*/
+
+
 class Tienda
 {
     /**
@@ -12,38 +17,38 @@ class Tienda
      * @ORM\GeneratedValue
      */
     protected $id;
-    
+
     /** @ORM\Column(type="string", length=100) */
     protected $nombre;
-    
+
     /** @ORM\Column(type="string", length=100) */
     protected $slug;
-    
+
     /** @ORM\Column(type="string", length=10) */
     protected $login;
-    
+
     /** @ORM\Column(type="string", length=255) */
     protected $password;
-    
+
     /** @ORM\Column(type="string", length=255) */
     protected $salt;
-    
+
     /** @ORM\Column(type="text") */
     protected $descripcion;
-    
+
     /** @ORM\Column(type="text") */
     protected $direccion;
-    
+
     /**
      * @ORM\ManyToOne(targetEntity="Cupon\CiudadBundle\Entity\Ciudad")
-     * @ORM\JoinColumn(name="ciudad_id", referencedColumnName="id") 
+     * @ORM\JoinColumn(name="ciudad_id", referencedColumnName="id")
      */
     protected $ciudad;
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -60,14 +65,14 @@ class Tienda
     {
         $this->nombre = $nombre;
         $this->slug = Util::getSlug($nombre);
-    
+
         return $this;
     }
 
     /**
      * Get nombre
      *
-     * @return string 
+     * @return string
      */
     public function getNombre()
     {
@@ -83,14 +88,14 @@ class Tienda
     public function setSlug($slug)
     {
         $this->slug = $slug;
-    
+
         return $this;
     }
 
     /**
      * Get slug
      *
-     * @return string 
+     * @return string
      */
     public function getSlug()
     {
@@ -106,14 +111,14 @@ class Tienda
     public function setLogin($login)
     {
         $this->login = $login;
-    
+
         return $this;
     }
 
     /**
      * Get login
      *
-     * @return string 
+     * @return string
      */
     public function getLogin()
     {
@@ -129,14 +134,14 @@ class Tienda
     public function setPassword($password)
     {
         $this->password = $password;
-    
+
         return $this;
     }
 
     /**
      * Get password
      *
-     * @return string 
+     * @return string
      */
     public function getPassword()
     {
@@ -152,14 +157,14 @@ class Tienda
     public function setSalt($salt)
     {
         $this->salt = $salt;
-    
+
         return $this;
     }
 
     /**
      * Get salt
      *
-     * @return string 
+     * @return string
      */
     public function getSalt()
     {
@@ -175,14 +180,14 @@ class Tienda
     public function setDescripcion($descripcion)
     {
         $this->descripcion = $descripcion;
-    
+
         return $this;
     }
 
     /**
      * Get descripcion
      *
-     * @return string 
+     * @return string
      */
     public function getDescripcion()
     {
@@ -198,14 +203,14 @@ class Tienda
     public function setDireccion($direccion)
     {
         $this->direccion = $direccion;
-    
+
         return $this;
     }
 
     /**
      * Get direccion
      *
-     * @return string 
+     * @return string
      */
     public function getDireccion()
     {
@@ -221,20 +226,20 @@ class Tienda
     public function setCiudad(\Cupon\CiudadBundle\Entity\Ciudad $ciudad = null)
     {
         $this->ciudad = $ciudad;
-    
+
         return $this;
     }
 
     /**
      * Get ciudad
      *
-     * @return Cupon\CiudadBundle\Entity\Ciudad 
+     * @return Cupon\CiudadBundle\Entity\Ciudad
      */
     public function getCiudad()
     {
         return $this->ciudad;
     }
-    
+
     public function __toString()
     {
         return $this->getNombre();

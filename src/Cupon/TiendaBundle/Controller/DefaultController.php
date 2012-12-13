@@ -22,7 +22,9 @@ class DefaultController extends Controller
             'slug'=> $tienda,
             'ciudad' => $ciudad->getId()
             ));
-        if (!$tienda) {
+
+        if (!$tienda)
+        {
             throw $this->createNotFoundException('No existe esta tienda');
         }
         $ofertas = $em->getRepository('TiendaBundle:Tienda')

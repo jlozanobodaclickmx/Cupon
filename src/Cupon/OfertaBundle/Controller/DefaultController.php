@@ -40,10 +40,15 @@ class DefaultController extends Controller
 
     public function ofertaAction($ciudad, $slug)
     {
-     $em = $this->getDoctrine()->getEntityManager();
-     $oferta = $em->getRepository('OfertaBundle:Oferta')->findOferta($ciudad, $slug);
-     $relacionadas = $em->getRepository('OfertaBundle:Oferta')->findRelacionadas($ciudad);
+        $em = $this->getDoctrine()->getEntityManager();
+        $oferta = $em->getRepository('OfertaBundle:Oferta')->findOferta($ciudad, $slug);
 
+        if (!$oferta)
+        {
+            throw $this->createNotFoundException('No existe la oferta');
+        }
+
+        $relacionadas = $em->getRepository('OfertaBundle:Oferta')->findRelacionadas($ciudad);
 
      return $this->render('OfertaBundle:Default:detalle.html.twig',
         array('oferta'=> $oferta,
